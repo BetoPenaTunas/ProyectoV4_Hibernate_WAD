@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">
+            com.mysql.cj.jdbc.Driver    
+        </property>
+        <property name="connection.url">
+            jdbc:mysql://remotemysql.com:3306/aGw7gCxNMt  <!-- Cadena de conexion a CIERTA BD-->
+        </property>
+        <!-- CONEXIÓN DEL MANEJADOR DE BASE DE DATOS -->
+        <property name="connection.username">aGw7gCxNMt</property> 
+        <property name="connection.password">mlDzKnkC5U</property>
+        
+        <!-- TAREA: INVESTIGAR QUÉ HACE CADA línea de código -->
+        <!-- En general, se crea la fábrica de sesiones y le diremos que se conectará con 
+             MySQL a través del DriverClassName 
+        -->
+        
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property> <!--Dialecto a utilizar, si fuera POSTGRESS aquí cambia-->
+        <property name="show_sql">true</property>   <!-- PARA SABER QUE LA TRADUCCIÓN de SQL se hace BIEN o MAL -->
+        <property name="current_session_context_class">thread</property>    <!-- Manejo de sesiones por un HILO de peticiones  -->
+        <property name="hbm2ddl.auto">update</property>     <!-- AUTOGENERACIÓN DE ESQUEMAS: Si no existe lo crea si no existe actualiza y va agregando actualizaciones al motor de DATOS  -->
+        
+        <!-- Las siguientes propiedades son para el manejo de POOL de conexiones -->
+        <property name="connection.pool_size">1</property>  
+        <property name="hibernate.dbcp.initialSize">5</property>
+        <property name="hibernate.dbcp.maxTotal">20</property>
+        <property name="hibernate.dbcp.maxIdle">10</property>
+        <property name="hibernate.dbcp.minIdle">5</property>
+        <property name="hibernate.dbcp.maxWaitMillis">-1</property>
+        
+        <!-- En JPA es más GRÁFICO, lo que se hará a continuación -->
+        
+        <mapping class="hibernate.Categoria"/>   <!-- RELACIONANDO LA CLASE Alumno.java con la fábrica-->
+        <mapping class="hibernate.Articulo"/>
+    </session-factory>
+
+</hibernate-configuration>
